@@ -13,7 +13,7 @@ let package = Package(
             dependencies: [],
             path: "Sources/SonosClient",
             resources: [
-                .process("Resources")
+                .copy("Resources")
             ],
             linkerSettings: [
                 .linkedFramework("MusicKit")
