@@ -27,13 +27,58 @@ struct RoomListSidebar: View {
             Text("No rooms found")
                 .font(.caption)
                 .foregroundColor(.secondary)
-            Button("Retry") {
+            Button("Retry Discovery") {
                 coordinator.startDiscovery()
             }
             .controlSize(.small)
+
+            // Compact manual IP entry in sidebar
+            ManualIPEntrySidebar()
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 16)
+    }
+}
+
+/// Compact manual IP entry for the sidebar.
+struct ManualIPEntrySidebar: View {
+    @EnvironmentObject var coordinator: SonosCoordinator
+    @State private var ip: String = ""
+    @State private var isAdding = false
+
+    var body: some View {
+        VStack(spacing: 4) {
+            Text("Add by IP")
+                .font(.system(size: 10))
+                .foregroundColor(.secondary)
+            HStack(spacing: 4) {
+                TextField("IP address", text: $ip)
+                    .textFieldStyle(.roundedBorder)
+                    .font(.system(size: 11))
+                    .onSubmit { add() }
+                Button {
+                    add()
+                } label: {
+                    if isAdding {
+                        ProgressView().controlSize(.mini)
+                    } else {
+                        Image(systemName: "plus.circle.fill")
+                            .font(.system(size: 14))
+                    }
+                }
+                .buttonStyle(.plain)
+                .disabled(ip.trimmingCharacters(in: .whitespaces).isEmpty || isAdding)
+            }
+        }
+        .padding(.horizontal, 8)
+    }
+
+    private func add() {
+        isAdding = true
+        Task {
+            await coordinator.addDeviceManually(ip: ip)
+            isAdding = false
+        }
     }
 }
 

@@ -18,9 +18,12 @@ final class SonosCoordinator: ObservableObject {
     @Published var isDiscovering: Bool = false
     @Published var errorMessage: String?
 
+    @Published var discoveryLog: [String] = []
+
     // MARK: - Services
 
     private let discovery = SSDPDiscovery()
+    private let subnetScanner = SubnetScanner()
     private let transport = TransportService()
     private let rendering = RenderingService()
     private let zoneService = ZoneService()
@@ -36,7 +39,8 @@ final class SonosCoordinator: ObservableObject {
 
     func startDiscovery() {
         isDiscovering = true
-        knownDeviceIPs.removeAll()
+        discoveryLog.removeAll()
+        addLog("Starting SSDP multicast discovery...")
 
         discovery.search { [weak self] ip, port in
             Task { @MainActor [weak self] in
@@ -44,13 +48,53 @@ final class SonosCoordinator: ObservableObject {
             }
         }
 
-        // Stop discovery after a timeout and refresh groups
+        // Wait for SSDP, then fallback to subnet scan if needed
         Task {
-            try? await Task.sleep(for: .seconds(5))
+            // Give SSDP time to work (it sends 3 bursts with listen periods)
+            try? await Task.sleep(for: .seconds(15))
             discovery.stop()
+
+            if devices.isEmpty {
+                addLog("SSDP found no devices. Trying subnet scan...")
+                await runSubnetScan()
+            } else {
+                addLog("SSDP found \(devices.count) device(s)")
+            }
+
+            if devices.isEmpty {
+                addLog("No devices found. Try adding an IP manually.")
+            }
+
             isDiscovering = false
             await refreshGroups()
             startPolling()
+        }
+    }
+
+    /// Run a subnet scan as a fallback when SSDP fails.
+    private func runSubnetScan() async {
+        await subnetScanner.scan { [weak self] ip, port in
+            Task { @MainActor [weak self] in
+                await self?.handleDiscoveredDevice(ip: ip, port: port)
+            }
+        }
+        if !devices.isEmpty {
+            addLog("Subnet scan found \(devices.count) device(s)")
+        }
+    }
+
+    /// Manually add a device by IP address (user fallback).
+    func addDeviceManually(ip: String) async {
+        let trimmed = ip.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return }
+        addLog("Trying \(trimmed):1400...")
+        await handleDiscoveredDevice(ip: trimmed, port: 1400)
+        if devices.contains(where: { $0.ip == trimmed }) {
+            addLog("Found device at \(trimmed)")
+            await refreshGroups()
+        } else {
+            addLog("No Sonos device found at \(trimmed)")
+            errorMessage = "No Sonos device found at \(trimmed). Make sure the IP is correct and the speaker is powered on."
         }
     }
 
@@ -62,6 +106,11 @@ final class SonosCoordinator: ObservableObject {
         positionTimer = nil
     }
 
+    private func addLog(_ message: String) {
+        print("[Discovery] \(message)")
+        discoveryLog.append(message)
+    }
+
     // MARK: - Discovery
 
     private func handleDiscoveredDevice(ip: String, port: Int) async {
@@ -69,13 +118,17 @@ final class SonosCoordinator: ObservableObject {
         knownDeviceIPs.insert(ip)
 
         do {
-            guard let device = try await DeviceDescriptionFetcher.fetch(ip: ip, port: port) else { return }
+            guard let device = try await DeviceDescriptionFetcher.fetch(ip: ip, port: port) else {
+                addLog("Device at \(ip) responded but couldn't be parsed")
+                return
+            }
             knownDevices[device.id] = device
             if !devices.contains(where: { $0.id == device.id }) {
                 devices.append(device)
+                addLog("Discovered: \(device.roomName) (\(device.modelName)) at \(ip)")
             }
         } catch {
-            print("[Discovery] Failed to fetch device at \(ip): \(error)")
+            addLog("Failed to reach \(ip): \(error.localizedDescription)")
         }
     }
 

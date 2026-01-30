@@ -76,15 +76,87 @@ struct NowPlayingDetailView: View {
                 .font(.body)
                 .foregroundColor(.secondary.opacity(0.7))
 
-            if coordinator.devices.isEmpty {
-                Button("Search for Devices") {
-                    coordinator.startDiscovery()
+            if coordinator.devices.isEmpty && !coordinator.isDiscovering {
+                VStack(spacing: 12) {
+                    Button("Search for Devices") {
+                        coordinator.startDiscovery()
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
+                    .padding(.top, 8)
+
+                    ManualIPEntryView()
                 }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.large)
+            } else if coordinator.isDiscovering {
+                VStack(spacing: 8) {
+                    ProgressView()
+                        .controlSize(.regular)
+                    Text("Searching for Sonos speakers...")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
                 .padding(.top, 8)
             }
+
+            // Discovery log
+            if !coordinator.discoveryLog.isEmpty {
+                VStack(alignment: .leading, spacing: 2) {
+                    ForEach(coordinator.discoveryLog.suffix(5), id: \.self) { entry in
+                        Text(entry)
+                            .font(.system(size: 11, design: .monospaced))
+                            .foregroundColor(.secondary.opacity(0.6))
+                    }
+                }
+                .padding(.top, 12)
+                .frame(maxWidth: 400)
+            }
+
             Spacer()
+        }
+    }
+}
+
+/// Inline manual IP entry field.
+struct ManualIPEntryView: View {
+    @EnvironmentObject var coordinator: SonosCoordinator
+    @State private var ipAddress: String = ""
+    @State private var isAdding: Bool = false
+
+    var body: some View {
+        VStack(spacing: 8) {
+            Text("Or enter a Sonos IP address:")
+                .font(.caption)
+                .foregroundColor(.secondary)
+
+            HStack(spacing: 6) {
+                TextField("e.g. 192.168.1.100", text: $ipAddress)
+                    .textFieldStyle(.roundedBorder)
+                    .frame(width: 180)
+                    .onSubmit { addDevice() }
+
+                Button {
+                    addDevice()
+                } label: {
+                    if isAdding {
+                        ProgressView()
+                            .controlSize(.small)
+                    } else {
+                        Text("Connect")
+                    }
+                }
+                .buttonStyle(.bordered)
+                .controlSize(.small)
+                .disabled(ipAddress.trimmingCharacters(in: .whitespaces).isEmpty || isAdding)
+            }
+        }
+    }
+
+    private func addDevice() {
+        guard !ipAddress.trimmingCharacters(in: .whitespaces).isEmpty else { return }
+        isAdding = true
+        Task {
+            await coordinator.addDeviceManually(ip: ipAddress)
+            isAdding = false
         }
     }
 }
