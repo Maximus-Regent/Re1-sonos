@@ -4,6 +4,13 @@ Modern (actually good) S1 client for macOS in Swift.
 
 ## Features
 
+- **Apple Music Integration** — Browse, search, and play Apple Music directly on Sonos speakers
+  - Browse recommendations, charts, and recently played
+  - Full library access: playlists, albums, artists, songs
+  - Search the Apple Music catalog
+  - Album and playlist detail views with track listings
+  - Artist pages with top songs and discography
+  - Play, shuffle, or add to queue from any view
 - **Device Discovery** — Automatic SSDP discovery of Sonos S1 speakers on your local network
 - **Playback Control** — Play, pause, skip, previous, seek, shuffle, repeat
 - **Queue Management** — View, play from, and clear the current queue
@@ -18,6 +25,8 @@ Modern (actually good) S1 client for macOS in Swift.
 - macOS 14.0 (Sonoma) or later
 - Swift 5.9+
 - Sonos S1 speakers on the same local network
+- Apple Music subscription (for Apple Music features)
+- Apple Music must be linked in your Sonos system settings
 
 ## Building
 
@@ -45,6 +54,7 @@ SonosClient/
 │   ├── Network/                # SSDP discovery, SOAP client, XML parsing
 │   ├── Services/               # Business logic (Transport, Rendering, Zone, Events, Coordinator)
 │   ├── Views/
+│   │   ├── AppleMusic/         # Apple Music browser, search, album/playlist/artist detail
 │   │   ├── Components/         # Reusable views (AlbumArt, ProgressBar, Volume, PlaybackControls)
 │   │   ├── NowPlaying/         # Now playing detail + bottom bar
 │   │   ├── Queue/              # Queue list view
@@ -62,3 +72,11 @@ SonosClient/
 3. **Zone Topology** — Queries ZoneGroupTopology to understand speaker groupings
 4. **SOAP Control** — Sends UPnP/SOAP commands for playback, volume, and queue operations
 5. **State Polling** — Polls transport and volume state for real-time UI updates
+6. **Apple Music Bridge** — Translates MusicKit catalog IDs into Sonos-compatible `x-sonos-http:` / `x-rincon-cpcontainer:` URIs with DIDL-Lite metadata envelopes, targeting the linked Apple Music service (sid=204)
+
+## Apple Music Setup
+
+1. Link Apple Music to your Sonos system using the official Sonos app
+2. Launch Sonos Client and click the "Apple Music" tab in the sidebar
+3. Authorize Apple Music access when prompted
+4. Browse, search, and play directly to any Sonos room

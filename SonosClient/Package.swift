@@ -14,6 +14,9 @@ let package = Package(
             path: "Sources/SonosClient",
             resources: [
                 .process("Resources")
+            ],
+            linkerSettings: [
+                .linkedFramework("MusicKit")
             ]
         )
     ]

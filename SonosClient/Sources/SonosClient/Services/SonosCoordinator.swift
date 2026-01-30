@@ -1,5 +1,6 @@
 import Foundation
 import Combine
+import MusicKit
 
 /// Central coordinator that manages device discovery, state polling, and exposes
 /// reactive state for the SwiftUI views.
@@ -348,6 +349,122 @@ final class SonosCoordinator: ObservableObject {
             await refreshGroups()
         } catch {
             errorMessage = "Ungroup failed: \(error.localizedDescription)"
+        }
+    }
+
+    // MARK: - Apple Music Playback
+
+    /// Play a single Apple Music song immediately on the selected Sonos group.
+    func playAppleMusicSong(song: Song) async {
+        guard let group = selectedGroup else {
+            errorMessage = "Select a room first"
+            return
+        }
+        let uri = SonosAppleMusicBridge.songURI(songId: song.id)
+        let metadata = SonosAppleMusicBridge.songMetadata(song: song)
+        do {
+            try await transport.setAVTransportURI(device: group.coordinator, uri: uri, metadata: metadata)
+            try await transport.play(device: group.coordinator)
+            try? await Task.sleep(for: .milliseconds(500))
+            await refreshTransport()
+        } catch {
+            errorMessage = "Apple Music play failed: \(error.localizedDescription)"
+        }
+    }
+
+    /// Add a single Apple Music song to the Sonos queue.
+    func addAppleMusicSongToQueue(song: Song) async {
+        guard let group = selectedGroup else {
+            errorMessage = "Select a room first"
+            return
+        }
+        let uri = SonosAppleMusicBridge.songURI(songId: song.id)
+        let metadata = SonosAppleMusicBridge.songQueueMetadata(song: song)
+        do {
+            try await transport.addURIToQueue(device: group.coordinator, uri: uri, metadata: metadata)
+            await refreshQueue()
+        } catch {
+            errorMessage = "Add to queue failed: \(error.localizedDescription)"
+        }
+    }
+
+    /// Play an Apple Music album on the selected Sonos group.
+    func playAppleMusicAlbum(album: Album, shuffle: Bool = false) async {
+        guard let group = selectedGroup else {
+            errorMessage = "Select a room first"
+            return
+        }
+        let uri = SonosAppleMusicBridge.albumURI(albumId: album.id)
+        let metadata = SonosAppleMusicBridge.albumMetadata(album: album)
+        do {
+            try await transport.removeAllTracksFromQueue(device: group.coordinator)
+            try await transport.addURIToQueue(device: group.coordinator, uri: uri, metadata: metadata)
+            if shuffle {
+                try await transport.setPlayMode(device: group.coordinator, mode: .shuffle)
+            }
+            try await transport.seekTrack(device: group.coordinator, trackNumber: 1)
+            try await transport.play(device: group.coordinator)
+            try? await Task.sleep(for: .milliseconds(500))
+            await refreshTransport()
+            await refreshQueue()
+        } catch {
+            errorMessage = "Play album failed: \(error.localizedDescription)"
+        }
+    }
+
+    /// Add an Apple Music album to the end of the Sonos queue.
+    func addAppleMusicAlbumToQueue(album: Album) async {
+        guard let group = selectedGroup else {
+            errorMessage = "Select a room first"
+            return
+        }
+        let uri = SonosAppleMusicBridge.albumURI(albumId: album.id)
+        let metadata = SonosAppleMusicBridge.albumMetadata(album: album)
+        do {
+            try await transport.addURIToQueue(device: group.coordinator, uri: uri, metadata: metadata)
+            await refreshQueue()
+        } catch {
+            errorMessage = "Add album to queue failed: \(error.localizedDescription)"
+        }
+    }
+
+    /// Play an Apple Music playlist on the selected Sonos group.
+    func playAppleMusicPlaylist(playlist: Playlist, shuffle: Bool = false) async {
+        guard let group = selectedGroup else {
+            errorMessage = "Select a room first"
+            return
+        }
+        let uri = SonosAppleMusicBridge.playlistURI(playlistId: playlist.id)
+        let metadata = SonosAppleMusicBridge.playlistMetadata(playlist: playlist)
+        do {
+            try await transport.removeAllTracksFromQueue(device: group.coordinator)
+            try await transport.addURIToQueue(device: group.coordinator, uri: uri, metadata: metadata)
+            if shuffle {
+                try await transport.setPlayMode(device: group.coordinator, mode: .shuffle)
+            }
+            try await transport.seekTrack(device: group.coordinator, trackNumber: 1)
+            try await transport.play(device: group.coordinator)
+            try? await Task.sleep(for: .milliseconds(500))
+            await refreshTransport()
+            await refreshQueue()
+        } catch {
+            errorMessage = "Play playlist failed: \(error.localizedDescription)"
+        }
+    }
+
+    /// Add an Apple Music playlist to the end of the Sonos queue.
+    func addAppleMusicPlaylistToQueue(playlist: Playlist) async {
+        guard let group = selectedGroup else {
+            errorMessage = "Select a room first"
+            return
+        }
+        let uri = SonosAppleMusicBridge.playlistURI(playlistId: playlist.id)
+        let metadata = SonosAppleMusicBridge.playlistMetadata(playlist: playlist)
+        do {
+            try await transport.addURIToQueue(device: group.coordinator, uri: uri, metadata: metadata)
+            await refreshQueue()
+        } catch {
+            errorMessage = "Add playlist to queue failed: \(error.localizedDescription)"
         }
     }
 }
