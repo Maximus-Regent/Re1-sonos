@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// Centered playback controls (shuffle, prev, play/pause, next, repeat).
+/// Centered playback controls (shuffle, prev, play/pause, next, repeat, crossfade).
 struct PlaybackControlsView: View {
     @EnvironmentObject var coordinator: SonosCoordinator
 
@@ -57,6 +57,17 @@ struct PlaybackControlsView: View {
             }
             .buttonStyle(.plain)
             .help("Repeat")
+
+            // Crossfade
+            Button {
+                Task { await coordinator.toggleCrossfade() }
+            } label: {
+                Image(systemName: "arrow.triangle.swap")
+                    .font(.system(size: 16, weight: .medium))
+                    .foregroundColor(coordinator.isCrossfadeEnabled ? .accentColor : .secondary)
+            }
+            .buttonStyle(.plain)
+            .help("Crossfade")
         }
     }
 }

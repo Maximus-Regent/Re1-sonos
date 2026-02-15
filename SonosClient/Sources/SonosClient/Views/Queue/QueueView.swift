@@ -61,36 +61,34 @@ struct QueueView: View {
                 }
                 Spacer()
             } else {
-                ScrollView {
-                    LazyVStack(spacing: 0) {
-                        ForEach(Array(coordinator.queue.enumerated()), id: \.element.id) { index, track in
-                            QueueTrackRow(
-                                track: track,
-                                trackNumber: index + 1,
-                                isCurrentTrack: isCurrentTrack(index + 1),
-                                baseURL: coordinator.selectedGroup?.coordinator.baseURL
-                            )
-                            .onTapGesture(count: 2) {
+                List {
+                    ForEach(Array(coordinator.queue.enumerated()), id: \.element.id) { index, track in
+                        QueueTrackRow(
+                            track: track,
+                            trackNumber: index + 1,
+                            isCurrentTrack: isCurrentTrack(index + 1),
+                            baseURL: coordinator.selectedGroup?.coordinator.baseURL
+                        )
+                        .onTapGesture(count: 2) {
+                            Task { await coordinator.playTrackFromQueue(trackNumber: index + 1) }
+                        }
+                        .contextMenu {
+                            Button("Play") {
                                 Task { await coordinator.playTrackFromQueue(trackNumber: index + 1) }
                             }
-                            .contextMenu {
-                                Button("Play") {
-                                    Task { await coordinator.playTrackFromQueue(trackNumber: index + 1) }
-                                }
-                                Divider()
-                                Button("Remove from Queue") {
-                                    Task { await coordinator.removeFromQueue(trackNumber: index + 1) }
-                                }
-                            }
-
-                            if index < coordinator.queue.count - 1 {
-                                Divider()
-                                    .padding(.leading, 56)
+                            Divider()
+                            Button("Remove from Queue") {
+                                Task { await coordinator.removeFromQueue(trackNumber: index + 1) }
                             }
                         }
+                        .listRowSeparator(.visible)
+                        .listRowInsets(EdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 12))
                     }
-                    .padding(.horizontal, 12)
+                    .onMove { source, destination in
+                        coordinator.moveQueueTrack(from: source, to: destination)
+                    }
                 }
+                .listStyle(.plain)
             }
         }
     }
@@ -108,6 +106,11 @@ struct QueueTrackRow: View {
 
     var body: some View {
         HStack(spacing: 10) {
+            // Drag handle
+            Image(systemName: "line.3.horizontal")
+                .font(.system(size: 10))
+                .foregroundColor(.secondary.opacity(0.4))
+
             // Track number or playing indicator
             ZStack {
                 if isCurrentTrack {
@@ -123,7 +126,8 @@ struct QueueTrackRow: View {
             .frame(width: 28, alignment: .center)
 
             // Mini album art
-            if let url = track.albumArtURL(relativeTo: baseURL ?? URL(string: "http://localhost")!) {
+            if let resolvedBase = baseURL ?? URL(string: "http://localhost"),
+               let url = track.albumArtURL(relativeTo: resolvedBase) {
                 AsyncImage(url: url) { image in
                     image.resizable().aspectRatio(contentMode: .fill)
                 } placeholder: {

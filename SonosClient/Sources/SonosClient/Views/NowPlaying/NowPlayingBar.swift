@@ -1,8 +1,11 @@
 import SwiftUI
+import AVKit
 
 /// Compact now-playing bar fixed at the bottom of the window.
 struct NowPlayingBar: View {
     @EnvironmentObject var coordinator: SonosCoordinator
+    @State private var showEQ = false
+    @State private var showSleepTimer = false
 
     var body: some View {
         HStack(spacing: 12) {
@@ -91,6 +94,17 @@ struct NowPlayingBar: View {
                             .foregroundColor(coordinator.transportInfo?.playMode.isRepeating == true ? .accentColor : .secondary)
                     }
                     .buttonStyle(.plain)
+
+                    // Crossfade
+                    Button {
+                        Task { await coordinator.toggleCrossfade() }
+                    } label: {
+                        Image(systemName: "arrow.triangle.swap")
+                            .font(.system(size: 12))
+                            .foregroundColor(coordinator.isCrossfadeEnabled ? .accentColor : .secondary)
+                    }
+                    .buttonStyle(.plain)
+                    .help("Crossfade")
                 }
 
                 // Mini progress bar
@@ -113,8 +127,53 @@ struct NowPlayingBar: View {
 
             Spacer()
 
-            // Right: volume
+            // Right: EQ, sleep timer, volume
             HStack(spacing: 8) {
+                // EQ button
+                Button {
+                    showEQ.toggle()
+                } label: {
+                    Image(systemName: "slider.horizontal.3")
+                        .font(.system(size: 12))
+                }
+                .buttonStyle(.plain)
+                .help("Equalizer")
+                .popover(isPresented: $showEQ) {
+                    EQControlView()
+                        .environmentObject(coordinator)
+                }
+
+                // Sleep timer button
+                Button {
+                    showSleepTimer.toggle()
+                } label: {
+                    ZStack(alignment: .topTrailing) {
+                        Image(systemName: "moon.zzz")
+                            .font(.system(size: 12))
+                        if coordinator.sleepTimerRemaining != nil {
+                            Circle()
+                                .fill(Color.accentColor)
+                                .frame(width: 6, height: 6)
+                                .offset(x: 3, y: -3)
+                        }
+                    }
+                }
+                .buttonStyle(.plain)
+                .help("Sleep Timer")
+                .popover(isPresented: $showSleepTimer) {
+                    SleepTimerView()
+                        .environmentObject(coordinator)
+                }
+
+                // AirPlay route picker
+                AirPlayRoutePickerView()
+                    .frame(width: 20, height: 20)
+                    .help("AirPlay")
+
+                Divider()
+                    .frame(height: 16)
+
+                // Volume
                 Button {
                     Task { await coordinator.toggleMute() }
                 } label: {
@@ -154,4 +213,17 @@ struct NowPlayingBar: View {
             }
         )
     }
+}
+
+// MARK: - AirPlay Route Picker
+
+/// NSViewRepresentable wrapping AVRoutePickerView for AirPlay destination selection.
+struct AirPlayRoutePickerView: NSViewRepresentable {
+    func makeNSView(context: Context) -> AVRoutePickerView {
+        let picker = AVRoutePickerView()
+        picker.isRoutePickerButtonBordered = false
+        return picker
+    }
+
+    func updateNSView(_ nsView: AVRoutePickerView, context: Context) {}
 }

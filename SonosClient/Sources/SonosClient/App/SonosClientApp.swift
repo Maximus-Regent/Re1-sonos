@@ -12,9 +12,6 @@ struct SonosClientApp: App {
                 .onAppear {
                     coordinator.startDiscovery()
                 }
-                .onDisappear {
-                    coordinator.stopAll()
-                }
         }
         .windowStyle(.titleBar)
         .windowToolbarStyle(.unified(showsTitle: false))
@@ -35,5 +32,12 @@ struct SonosClientApp: App {
                 .environmentObject(coordinator)
         }
         #endif
+
+        // Menu Bar Mini Player
+        MenuBarExtra("Sonos", systemImage: "hifispeaker.fill") {
+            MenuBarPlayerView()
+                .environmentObject(coordinator)
+        }
+        .menuBarExtraStyle(.window)
     }
 }

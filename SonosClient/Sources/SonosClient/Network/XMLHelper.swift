@@ -4,23 +4,60 @@ import Foundation
 enum XMLHelper {
 
     /// Extract the text content of a given XML tag from a string.
+    /// Handles both plain tags (`<Tag>`) and namespace-prefixed tags (`<ns:Tag>`).
     static func extractValue(tag: String, from xml: String) -> String? {
-        // Try both regular and namespaced tags
+        // Build patterns: plain tag, plain tag with attributes, and any namespace prefix
         let patterns = [
-            "<\(tag)>", "<\(tag) ", // regular
+            "<\(tag)>", "<\(tag) ",
+            ":\(tag)>", ":\(tag) ",
         ]
         for prefix in patterns {
             guard let startRange = xml.range(of: prefix) else { continue }
             let searchStart: String.Index
             if prefix.hasSuffix(" ") {
-                // Find the closing > of the opening tag
+                // Find the closing > of the opening tag (skip attributes)
                 guard let closeAngle = xml.range(of: ">", range: startRange.upperBound..<xml.endIndex) else { continue }
                 searchStart = closeAngle.upperBound
             } else {
                 searchStart = startRange.upperBound
             }
-            guard let endRange = xml.range(of: "</\(tag)>", range: searchStart..<xml.endIndex) else { continue }
-            return String(xml[searchStart..<endRange.lowerBound])
+            // For closing tag, also match namespace-prefixed variants
+            let closingPatterns = ["</\(tag)>"]
+            var endRange: Range<String.Index>?
+            for closing in closingPatterns {
+                endRange = xml.range(of: closing, range: searchStart..<xml.endIndex)
+                if endRange != nil { break }
+            }
+            // Also try namespace-prefixed closing tag (e.g. </ns:Tag>)
+            if endRange == nil {
+                endRange = xml.range(of: ":\(tag)>", range: searchStart..<xml.endIndex)
+                if let er = endRange {
+                    // Walk back to find the '</' before the namespace prefix
+                    var idx = er.lowerBound
+                    while idx > searchStart {
+                        let prev = xml.index(before: idx)
+                        if xml[prev] == "/" {
+                            let prevPrev = xml.index(before: prev)
+                            if xml[prevPrev] == "<" {
+                                endRange = prevPrev..<er.upperBound
+                                break
+                            }
+                        }
+                        if xml[prev] == "<" || xml[prev] == ">" { break }
+                        idx = prev
+                    }
+                }
+            }
+            guard let end = endRange else { continue }
+            // Extract content between opening and closing tags
+            let contentEnd: String.Index
+            if end.lowerBound >= searchStart {
+                // For namespace-prefixed closing, find the '<' that starts the closing tag
+                contentEnd = xml[searchStart..<end.upperBound].range(of: "</", options: .backwards, range: searchStart..<end.upperBound)?.lowerBound ?? end.lowerBound
+            } else {
+                continue
+            }
+            return String(xml[searchStart..<contentEnd])
         }
         return nil
     }

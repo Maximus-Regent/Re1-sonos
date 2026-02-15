@@ -1,0 +1,551 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00908491ECACB1395B15152E /* PlaybackControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27E01A5FBF7320C8CA89E6C /* PlaybackControlsView.swift */; };
+		1114EAA91C860F56DD12F210 /* MenuBarPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ACA59329D2582E7B043753 /* MenuBarPlayerView.swift */; };
+		1358DDCC02E7299C2D98D9C1 /* SonosGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BB102DFE04133DC6BB863E /* SonosGroup.swift */; };
+		2CD19824EDD4446E447650E8 /* RoomManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914705C415C32D0ED31C6AC7 /* RoomManagementView.swift */; };
+		2CF0BA252451A16B86DDA286 /* TransportState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD42B97EE9D86B82315CB1B /* TransportState.swift */; };
+		3767E7FFB49A83EA62DCA911 /* SleepTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A316FFB92C8BC3DED80B7460 /* SleepTimerView.swift */; };
+		37A5E73CDC104D7781106E27 /* BrowsableItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41D6DD38D42C18BCB68E59A /* BrowsableItem.swift */; };
+		3B37C22C65B269EE94FB9D3C /* SonosCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A460FA15159642333839AAB /* SonosCoordinator.swift */; };
+		3F58609F7602F1E5649EA5F2 /* QueueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D7EA48286D4A4D4F901F08 /* QueueView.swift */; };
+		446CA422FE47A1799C6C9406 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCCDD61516BED60034E9AA3 /* ContentView.swift */; };
+		538C69A01B9EA56603002D2E /* AlbumArtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649768EECAA61FB2674F156 /* AlbumArtView.swift */; };
+		587BC64ED33DAD94E183C323 /* LibraryBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1754DDBA361AE2A5828645 /* LibraryBrowserView.swift */; };
+		5F41C1A2F56F14453C564C78 /* AppleMusicService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF0013A86EACFE06327633F /* AppleMusicService.swift */; };
+		62081E847741BE4210D9359C /* ZoneService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82CC4213B2ABFCC3818B1677 /* ZoneService.swift */; };
+		6969328F1D187706C636DD50 /* DeviceDescriptionFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F517EB8FD9DD460155CC49E /* DeviceDescriptionFetcher.swift */; };
+		6B0B4D712350AE13477095C1 /* RoomListSidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB229FDF026A869258770B0B /* RoomListSidebar.swift */; };
+		6DCC115CCDFE576FE5385441 /* TransportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5477150C341E276E801B478F /* TransportService.swift */; };
+		704D7E275AABDDBBD5F281D4 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE12F6E9AB486FEA0603F10 /* FavoritesView.swift */; };
+		70D7FF8EF06F3962B7C36572 /* MusicLibraryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7463FE712BB7E3DAD9C0EA5 /* MusicLibraryService.swift */; };
+		753850C92D76D2902A12920C /* LibraryItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E29DB5729A150B57B34DB7 /* LibraryItemRow.swift */; };
+		75DCD7BFA833B2E1197D63B8 /* SSDPDiscovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0EBDCCB0EAEEBED6BE00C8 /* SSDPDiscovery.swift */; };
+		77D5432D08B009C9944EB918 /* AppleMusicModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFABF5F060F7EA16D6C690D /* AppleMusicModels.swift */; };
+		7869C48FFD2BC0A3F39C25FE /* XMLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCC9562C4916057BA423E4F /* XMLHelper.swift */; };
+		7A6C2C0A1B47861EF95E5A80 /* NowPlayingBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237099A1875228F6283A871C /* NowPlayingBar.swift */; };
+		7F808B3080227E1F51A466E7 /* RenderingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A532E6A21965251A698C545 /* RenderingService.swift */; };
+		9545E92A4E469BEA484A8FD3 /* KeyboardShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D27B8D0B8D40DC9CA29494F /* KeyboardShortcuts.swift */; };
+		95CEB946EA76178244DCED7A /* EQControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A56F41FD77BDBA5C200AC39 /* EQControlView.swift */; };
+		95E4EAF8BAEB05B17162E31F /* AppleMusicBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A0426CEF4BFBA4CAA935FB8 /* AppleMusicBrowserView.swift */; };
+		9C2FCEFE0F6CA6F4C9AC071F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5C515A70A9A9EE01C6CCB1 /* SettingsView.swift */; };
+		BE30EA7C5218432E1772E5B2 /* NowPlayingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DAEEF8A78E7CD717BBCEF1 /* NowPlayingDetailView.swift */; };
+		C0E55A0BB819B514E42FF1EF /* VolumeControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0C29EB37415A29B79D0C96 /* VolumeControlView.swift */; };
+		C9109E73C2969BFB152C24CE /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A446F1B50A48CF8FF5E549C /* ProgressBarView.swift */; };
+		CD5CBFEEEA6BBC67F975DB64 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1709868C1777E3672729B013 /* Track.swift */; };
+		CDC244871AF20F3DAB686923 /* InputSwitcherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A57C5111A1DED782CFD980 /* InputSwitcherView.swift */; };
+		CE29406EBE7E6643D1D3AC87 /* EventSubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AF12E7D86AC87145DB5C7B /* EventSubscriptionService.swift */; };
+		D910DB49AF97880CC8BC1134 /* placeholder.txt in Resources */ = {isa = PBXBuildFile; fileRef = B205330614B8535DDCF2CC4B /* placeholder.txt */; };
+		DDC37CF472E48377A43A3F2A /* SonosDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5234F0F850499A44CFCB952 /* SonosDevice.swift */; };
+		EC5D23B22DDFACD57014096B /* AppleMusicItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4B44ADE8E50E2E061F4430 /* AppleMusicItemRow.swift */; };
+		EFB38C11F60D0C28532D6C64 /* SonosClientApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C4A5B28BAD73E55C4A06FA /* SonosClientApp.swift */; };
+		F24AD3D5165B5D4BEC0C4886 /* SOAPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636D6AA7B968F3D47CE83FB3 /* SOAPClient.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0A56F41FD77BDBA5C200AC39 /* EQControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EQControlView.swift; sourceTree = "<group>"; };
+		0FE12F6E9AB486FEA0603F10 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		1709868C1777E3672729B013 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		237099A1875228F6283A871C /* NowPlayingBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingBar.swift; sourceTree = "<group>"; };
+		2A446F1B50A48CF8FF5E549C /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		2B0EBDCCB0EAEEBED6BE00C8 /* SSDPDiscovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSDPDiscovery.swift; sourceTree = "<group>"; };
+		33A57C5111A1DED782CFD980 /* InputSwitcherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSwitcherView.swift; sourceTree = "<group>"; };
+		3649768EECAA61FB2674F156 /* AlbumArtView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumArtView.swift; sourceTree = "<group>"; };
+		52ACA59329D2582E7B043753 /* MenuBarPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarPlayerView.swift; sourceTree = "<group>"; };
+		5477150C341E276E801B478F /* TransportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportService.swift; sourceTree = "<group>"; };
+		5A0426CEF4BFBA4CAA935FB8 /* AppleMusicBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicBrowserView.swift; sourceTree = "<group>"; };
+		636D6AA7B968F3D47CE83FB3 /* SOAPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOAPClient.swift; sourceTree = "<group>"; };
+		65C4A5B28BAD73E55C4A06FA /* SonosClientApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonosClientApp.swift; sourceTree = "<group>"; };
+		6A532E6A21965251A698C545 /* RenderingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderingService.swift; sourceTree = "<group>"; };
+		6BCC9562C4916057BA423E4F /* XMLHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLHelper.swift; sourceTree = "<group>"; };
+		6F517EB8FD9DD460155CC49E /* DeviceDescriptionFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDescriptionFetcher.swift; sourceTree = "<group>"; };
+		71CCD365E3A654DA84DBA191 /* SonosClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SonosClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A460FA15159642333839AAB /* SonosCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonosCoordinator.swift; sourceTree = "<group>"; };
+		82CC4213B2ABFCC3818B1677 /* ZoneService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneService.swift; sourceTree = "<group>"; };
+		8A1754DDBA361AE2A5828645 /* LibraryBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryBrowserView.swift; sourceTree = "<group>"; };
+		8D27B8D0B8D40DC9CA29494F /* KeyboardShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShortcuts.swift; sourceTree = "<group>"; };
+		914705C415C32D0ED31C6AC7 /* RoomManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomManagementView.swift; sourceTree = "<group>"; };
+		9F4B44ADE8E50E2E061F4430 /* AppleMusicItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicItemRow.swift; sourceTree = "<group>"; };
+		9FF0013A86EACFE06327633F /* AppleMusicService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicService.swift; sourceTree = "<group>"; };
+		A0BB102DFE04133DC6BB863E /* SonosGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonosGroup.swift; sourceTree = "<group>"; };
+		A316FFB92C8BC3DED80B7460 /* SleepTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepTimerView.swift; sourceTree = "<group>"; };
+		A41D6DD38D42C18BCB68E59A /* BrowsableItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowsableItem.swift; sourceTree = "<group>"; };
+		A5AF12E7D86AC87145DB5C7B /* EventSubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventSubscriptionService.swift; sourceTree = "<group>"; };
+		A7D7EA48286D4A4D4F901F08 /* QueueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueView.swift; sourceTree = "<group>"; };
+		A9332B9E05BD76D35DAE8E27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB229FDF026A869258770B0B /* RoomListSidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomListSidebar.swift; sourceTree = "<group>"; };
+		ACAE51DF737812F53583CC9F /* SonosClient.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SonosClient.entitlements; sourceTree = "<group>"; };
+		B205330614B8535DDCF2CC4B /* placeholder.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = placeholder.txt; sourceTree = "<group>"; };
+		B7E29DB5729A150B57B34DB7 /* LibraryItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryItemRow.swift; sourceTree = "<group>"; };
+		B9DAEEF8A78E7CD717BBCEF1 /* NowPlayingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingDetailView.swift; sourceTree = "<group>"; };
+		BA5C515A70A9A9EE01C6CCB1 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BBCCDD61516BED60034E9AA3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C27E01A5FBF7320C8CA89E6C /* PlaybackControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackControlsView.swift; sourceTree = "<group>"; };
+		CDD42B97EE9D86B82315CB1B /* TransportState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportState.swift; sourceTree = "<group>"; };
+		D5234F0F850499A44CFCB952 /* SonosDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SonosDevice.swift; sourceTree = "<group>"; };
+		DE0C29EB37415A29B79D0C96 /* VolumeControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeControlView.swift; sourceTree = "<group>"; };
+		E7463FE712BB7E3DAD9C0EA5 /* MusicLibraryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicLibraryService.swift; sourceTree = "<group>"; };
+		ECFABF5F060F7EA16D6C690D /* AppleMusicModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicModels.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6BC9136C2E1B992EF374A2EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1120FAC791DC55D36F273772 /* MenuBar */ = {
+			isa = PBXGroup;
+			children = (
+				52ACA59329D2582E7B043753 /* MenuBarPlayerView.swift */,
+			);
+			path = MenuBar;
+			sourceTree = "<group>";
+		};
+		14585FE2A333418261EE2D08 /* Sidebar */ = {
+			isa = PBXGroup;
+			children = (
+				AB229FDF026A869258770B0B /* RoomListSidebar.swift */,
+				914705C415C32D0ED31C6AC7 /* RoomManagementView.swift */,
+			);
+			path = Sidebar;
+			sourceTree = "<group>";
+		};
+		1BADDC1D73C1A20F347483E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				71CCD365E3A654DA84DBA191 /* SonosClient.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		251F751433B3A59CB0FAFDCE /* AppleMusic */ = {
+			isa = PBXGroup;
+			children = (
+				5A0426CEF4BFBA4CAA935FB8 /* AppleMusicBrowserView.swift */,
+				9F4B44ADE8E50E2E061F4430 /* AppleMusicItemRow.swift */,
+			);
+			path = AppleMusic;
+			sourceTree = "<group>";
+		};
+		45B877375D6D6297BAAF2860 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B205330614B8535DDCF2CC4B /* placeholder.txt */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		4F60404FBFDF40A2513E2919 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				BA5C515A70A9A9EE01C6CCB1 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		564EAF51B7DD4639ADD9B985 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7A460FA15159642333839AAB /* SonosCoordinator.swift */,
+				5477150C341E276E801B478F /* TransportService.swift */,
+				6A532E6A21965251A698C545 /* RenderingService.swift */,
+				E7463FE712BB7E3DAD9C0EA5 /* MusicLibraryService.swift */,
+				82CC4213B2ABFCC3818B1677 /* ZoneService.swift */,
+				A5AF12E7D86AC87145DB5C7B /* EventSubscriptionService.swift */,
+				9FF0013A86EACFE06327633F /* AppleMusicService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		6A4A5194513E89696377E642 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				3649768EECAA61FB2674F156 /* AlbumArtView.swift */,
+				C27E01A5FBF7320C8CA89E6C /* PlaybackControlsView.swift */,
+				2A446F1B50A48CF8FF5E549C /* ProgressBarView.swift */,
+				DE0C29EB37415A29B79D0C96 /* VolumeControlView.swift */,
+				33A57C5111A1DED782CFD980 /* InputSwitcherView.swift */,
+				0A56F41FD77BDBA5C200AC39 /* EQControlView.swift */,
+				A316FFB92C8BC3DED80B7460 /* SleepTimerView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		873354A4497E50B94632F93C /* Queue */ = {
+			isa = PBXGroup;
+			children = (
+				A7D7EA48286D4A4D4F901F08 /* QueueView.swift */,
+			);
+			path = Queue;
+			sourceTree = "<group>";
+		};
+		8D3FC6DB5D0827F168A73277 = {
+			isa = PBXGroup;
+			children = (
+				E4F9B9B828BD894C7208C99D /* Sources/SonosClient */,
+				A9332B9E05BD76D35DAE8E27 /* Info.plist */,
+				ACAE51DF737812F53583CC9F /* SonosClient.entitlements */,
+				1BADDC1D73C1A20F347483E1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		94EC979C78A1C9E483FAC308 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				8D27B8D0B8D40DC9CA29494F /* KeyboardShortcuts.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		9B5A5897291E81FC14FEC2FE /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				636D6AA7B968F3D47CE83FB3 /* SOAPClient.swift */,
+				6BCC9562C4916057BA423E4F /* XMLHelper.swift */,
+				2B0EBDCCB0EAEEBED6BE00C8 /* SSDPDiscovery.swift */,
+				6F517EB8FD9DD460155CC49E /* DeviceDescriptionFetcher.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		9CF43B31E8845D861542A38E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CDD42B97EE9D86B82315CB1B /* TransportState.swift */,
+				A0BB102DFE04133DC6BB863E /* SonosGroup.swift */,
+				1709868C1777E3672729B013 /* Track.swift */,
+				A41D6DD38D42C18BCB68E59A /* BrowsableItem.swift */,
+				D5234F0F850499A44CFCB952 /* SonosDevice.swift */,
+				ECFABF5F060F7EA16D6C690D /* AppleMusicModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C454586A1F4E28C340BDC1AD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6A4A5194513E89696377E642 /* Components */,
+				CB76C64AF998A9D71B3283CE /* Library */,
+				F054522DB4AC612C2DCE850E /* NowPlaying */,
+				873354A4497E50B94632F93C /* Queue */,
+				14585FE2A333418261EE2D08 /* Sidebar */,
+				1120FAC791DC55D36F273772 /* MenuBar */,
+				4F60404FBFDF40A2513E2919 /* Settings */,
+				251F751433B3A59CB0FAFDCE /* AppleMusic */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CB76C64AF998A9D71B3283CE /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				8A1754DDBA361AE2A5828645 /* LibraryBrowserView.swift */,
+				B7E29DB5729A150B57B34DB7 /* LibraryItemRow.swift */,
+				0FE12F6E9AB486FEA0603F10 /* FavoritesView.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		E4F9B9B828BD894C7208C99D /* Sources/SonosClient */ = {
+			isa = PBXGroup;
+			children = (
+				FE910D29D648D8F2EA669AEF /* App */,
+				9CF43B31E8845D861542A38E /* Models */,
+				9B5A5897291E81FC14FEC2FE /* Network */,
+				564EAF51B7DD4639ADD9B985 /* Services */,
+				C454586A1F4E28C340BDC1AD /* Views */,
+				94EC979C78A1C9E483FAC308 /* Utilities */,
+				45B877375D6D6297BAAF2860 /* Resources */,
+			);
+			path = Sources/SonosClient;
+			sourceTree = "<group>";
+		};
+		F054522DB4AC612C2DCE850E /* NowPlaying */ = {
+			isa = PBXGroup;
+			children = (
+				237099A1875228F6283A871C /* NowPlayingBar.swift */,
+				B9DAEEF8A78E7CD717BBCEF1 /* NowPlayingDetailView.swift */,
+			);
+			path = NowPlaying;
+			sourceTree = "<group>";
+		};
+		FE910D29D648D8F2EA669AEF /* App */ = {
+			isa = PBXGroup;
+			children = (
+				65C4A5B28BAD73E55C4A06FA /* SonosClientApp.swift */,
+				BBCCDD61516BED60034E9AA3 /* ContentView.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		42AEFBAE01D2DFD981F7DA7D /* SonosClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EAF116FE40D68E4ABB26094B /* Build configuration list for PBXNativeTarget "SonosClient" */;
+			buildPhases = (
+				F680599402C0D80E245DE801 /* Sources */,
+				6BC9136C2E1B992EF374A2EA /* Frameworks */,
+				781C774F390DF12CD292A30B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SonosClient;
+			productName = SonosClient;
+			productReference = 71CCD365E3A654DA84DBA191 /* SonosClient.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		46F86FAA6BBF9AC94A7E4595 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+			};
+			buildConfigurationList = 56283EBD6DD86A56CED63937 /* Build configuration list for PBXProject "SonosClient" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8D3FC6DB5D0827F168A73277;
+			productRefGroup = 1BADDC1D73C1A20F347483E1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				42AEFBAE01D2DFD981F7DA7D /* SonosClient */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		781C774F390DF12CD292A30B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D910DB49AF97880CC8BC1134 /* placeholder.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F680599402C0D80E245DE801 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFB38C11F60D0C28532D6C64 /* SonosClientApp.swift in Sources */,
+				446CA422FE47A1799C6C9406 /* ContentView.swift in Sources */,
+				2CF0BA252451A16B86DDA286 /* TransportState.swift in Sources */,
+				1358DDCC02E7299C2D98D9C1 /* SonosGroup.swift in Sources */,
+				CD5CBFEEEA6BBC67F975DB64 /* Track.swift in Sources */,
+				37A5E73CDC104D7781106E27 /* BrowsableItem.swift in Sources */,
+				DDC37CF472E48377A43A3F2A /* SonosDevice.swift in Sources */,
+				77D5432D08B009C9944EB918 /* AppleMusicModels.swift in Sources */,
+				F24AD3D5165B5D4BEC0C4886 /* SOAPClient.swift in Sources */,
+				7869C48FFD2BC0A3F39C25FE /* XMLHelper.swift in Sources */,
+				75DCD7BFA833B2E1197D63B8 /* SSDPDiscovery.swift in Sources */,
+				6969328F1D187706C636DD50 /* DeviceDescriptionFetcher.swift in Sources */,
+				3B37C22C65B269EE94FB9D3C /* SonosCoordinator.swift in Sources */,
+				6DCC115CCDFE576FE5385441 /* TransportService.swift in Sources */,
+				7F808B3080227E1F51A466E7 /* RenderingService.swift in Sources */,
+				70D7FF8EF06F3962B7C36572 /* MusicLibraryService.swift in Sources */,
+				62081E847741BE4210D9359C /* ZoneService.swift in Sources */,
+				CE29406EBE7E6643D1D3AC87 /* EventSubscriptionService.swift in Sources */,
+				5F41C1A2F56F14453C564C78 /* AppleMusicService.swift in Sources */,
+				538C69A01B9EA56603002D2E /* AlbumArtView.swift in Sources */,
+				00908491ECACB1395B15152E /* PlaybackControlsView.swift in Sources */,
+				C9109E73C2969BFB152C24CE /* ProgressBarView.swift in Sources */,
+				C0E55A0BB819B514E42FF1EF /* VolumeControlView.swift in Sources */,
+				CDC244871AF20F3DAB686923 /* InputSwitcherView.swift in Sources */,
+				95CEB946EA76178244DCED7A /* EQControlView.swift in Sources */,
+				3767E7FFB49A83EA62DCA911 /* SleepTimerView.swift in Sources */,
+				587BC64ED33DAD94E183C323 /* LibraryBrowserView.swift in Sources */,
+				753850C92D76D2902A12920C /* LibraryItemRow.swift in Sources */,
+				704D7E275AABDDBBD5F281D4 /* FavoritesView.swift in Sources */,
+				7A6C2C0A1B47861EF95E5A80 /* NowPlayingBar.swift in Sources */,
+				BE30EA7C5218432E1772E5B2 /* NowPlayingDetailView.swift in Sources */,
+				3F58609F7602F1E5649EA5F2 /* QueueView.swift in Sources */,
+				6B0B4D712350AE13477095C1 /* RoomListSidebar.swift in Sources */,
+				2CD19824EDD4446E447650E8 /* RoomManagementView.swift in Sources */,
+				1114EAA91C860F56DD12F210 /* MenuBarPlayerView.swift in Sources */,
+				9C2FCEFE0F6CA6F4C9AC071F /* SettingsView.swift in Sources */,
+				95E4EAF8BAEB05B17162E31F /* AppleMusicBrowserView.swift in Sources */,
+				EC5D23B22DDFACD57014096B /* AppleMusicItemRow.swift in Sources */,
+				9545E92A4E469BEA484A8FD3 /* KeyboardShortcuts.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		553194FECB7E1C4EBBAFB6CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				AUTOMATION_APPLE_EVENTS = NO;
+				CODE_SIGN_ENTITLEMENTS = SonosClient.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WYLHH49USN;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = YES;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sonosclient.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		D8579749783A718541606A67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				AUTOMATION_APPLE_EVENTS = NO;
+				CODE_SIGN_ENTITLEMENTS = SonosClient.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WYLHH49USN;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = YES;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PHOTO_LIBRARY = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sonosclient.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUNTIME_EXCEPTION_ALLOW_DYLD_ENVIRONMENT_VARIABLES = NO;
+				RUNTIME_EXCEPTION_ALLOW_JIT = NO;
+				RUNTIME_EXCEPTION_ALLOW_UNSIGNED_EXECUTABLE_MEMORY = NO;
+				RUNTIME_EXCEPTION_DEBUGGING_TOOL = NO;
+				RUNTIME_EXCEPTION_DISABLE_EXECUTABLE_PAGE_PROTECTION = NO;
+				RUNTIME_EXCEPTION_DISABLE_LIBRARY_VALIDATION = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		FA9139DD8B03E3F922556BF8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FFE2104CCFAB79205AC64460 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		56283EBD6DD86A56CED63937 /* Build configuration list for PBXProject "SonosClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA9139DD8B03E3F922556BF8 /* Debug */,
+				FFE2104CCFAB79205AC64460 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EAF116FE40D68E4ABB26094B /* Build configuration list for PBXNativeTarget "SonosClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8579749783A718541606A67 /* Debug */,
+				553194FECB7E1C4EBBAFB6CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 46F86FAA6BBF9AC94A7E4595 /* Project object */;
+}

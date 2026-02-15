@@ -38,6 +38,9 @@ struct NowPlayingDetailView: View {
                             }
                         }
 
+                        // Input Switcher (for devices with external inputs)
+                        InputSwitcherView()
+
                         // Progress
                         ProgressBarView(
                             currentPosition: info.currentPosition,

@@ -177,4 +177,41 @@ actor TransportService {
         _ = try await soap.send(to: device.baseURL, service: .avTransport, action: "RemoveTrackFromQueue",
                                 arguments: [("ObjectID", "Q:0/\(trackNumber)")])
     }
+
+    // MARK: - Sleep Timer
+
+    func configureSleepTimer(device: SonosDevice, duration: String) async throws {
+        // duration format: "HH:MM:SS" or "" to cancel
+        _ = try await soap.send(to: device.baseURL, service: .avTransport, action: "ConfigureSleepTimer",
+                                arguments: [("NewSleepTimerDuration", duration)])
+    }
+
+    func getSleepTimerDuration(device: SonosDevice) async throws -> String {
+        let response = try await soap.send(to: device.baseURL, service: .avTransport, action: "GetRemainingSleepTimerDuration")
+        return XMLHelper.extractValue(tag: "RemainingSleepTimerDuration", from: response) ?? ""
+    }
+
+    // MARK: - Crossfade
+
+    func getCrossfadeMode(device: SonosDevice) async throws -> Bool {
+        let response = try await soap.send(to: device.baseURL, service: .avTransport, action: "GetCrossfadeMode")
+        return XMLHelper.extractValue(tag: "CrossfadeMode", from: response) == "1"
+    }
+
+    func setCrossfadeMode(device: SonosDevice, enabled: Bool) async throws {
+        _ = try await soap.send(to: device.baseURL, service: .avTransport, action: "SetCrossfadeMode",
+                                arguments: [("CrossfadeMode", enabled ? "1" : "0")])
+    }
+
+    // MARK: - Queue Reorder
+
+    func reorderTracksInQueue(device: SonosDevice, startingIndex: Int, numberOfTracks: Int, insertBefore: Int) async throws {
+        _ = try await soap.send(to: device.baseURL, service: .avTransport, action: "ReorderTracksInQueue",
+                                arguments: [
+                                    ("StartingIndex", "\(startingIndex)"),
+                                    ("NumberOfTracks", "\(numberOfTracks)"),
+                                    ("InsertBefore", "\(insertBefore)"),
+                                    ("UpdateID", "0")
+                                ])
+    }
 }

@@ -62,6 +62,9 @@ struct ProgressBarView: View {
                         NSCursor.pop()
                     }
                 }
+                .onDisappear {
+                    NSCursor.pop()
+                }
             }
             .frame(height: 12)
 

@@ -9,12 +9,18 @@ struct ContentView: View {
     enum SidebarTab: String, CaseIterable {
         case nowPlaying = "Now Playing"
         case queue = "Queue"
+        case library = "Library"
+        case favorites = "Favorites"
+        case appleMusic = "Apple Music"
         case rooms = "Rooms"
 
         var icon: String {
             switch self {
             case .nowPlaying: return "music.note"
             case .queue: return "list.bullet"
+            case .library: return "books.vertical"
+            case .favorites: return "star"
+            case .appleMusic: return "apple.logo"
             case .rooms: return "house.fill"
             }
         }
@@ -120,6 +126,12 @@ struct ContentView: View {
             NowPlayingDetailView()
         case .queue:
             QueueView()
+        case .library:
+            LibraryBrowserView()
+        case .favorites:
+            FavoritesView()
+        case .appleMusic:
+            AppleMusicBrowserView()
         case .rooms:
             RoomManagementView()
         }

@@ -106,12 +106,22 @@ final class SOAPClient: Sendable {
 }
 
 extension String {
-    /// Escape special XML characters.
+    /// Escape special XML characters for use in XML element content/attributes.
+    /// Important: Only call on raw (unescaped) strings. Calling on already-escaped
+    /// strings will double-escape entities (e.g. &amp; becomes &amp;amp;).
     var xmlEscaped: String {
-        self.replacingOccurrences(of: "&", with: "&amp;")
-            .replacingOccurrences(of: "<", with: "&lt;")
-            .replacingOccurrences(of: ">", with: "&gt;")
-            .replacingOccurrences(of: "\"", with: "&quot;")
-            .replacingOccurrences(of: "'", with: "&apos;")
+        var result = ""
+        result.reserveCapacity(self.count)
+        for char in self {
+            switch char {
+            case "&":  result += "&amp;"
+            case "<":  result += "&lt;"
+            case ">":  result += "&gt;"
+            case "\"": result += "&quot;"
+            case "'":  result += "&apos;"
+            default:   result.append(char)
+            }
+        }
+        return result
     }
 }

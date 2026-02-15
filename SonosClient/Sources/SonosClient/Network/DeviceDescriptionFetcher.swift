@@ -4,7 +4,7 @@ import Foundation
 enum DeviceDescriptionFetcher {
 
     static func fetch(ip: String, port: Int) async throws -> SonosDevice? {
-        let url = URL(string: "http://\(ip):\(port)/xml/device_description.xml")!
+        guard let url = URL(string: "http://\(ip):\(port)/xml/device_description.xml") else { return nil }
         let (data, _) = try await URLSession.shared.data(from: url)
         guard let xml = String(data: data, encoding: .utf8) else { return nil }
         return parse(xml: xml, ip: ip, port: port)
